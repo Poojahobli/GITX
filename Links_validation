@@ -35,6 +35,7 @@ public class HttpResponseCode  {
 		
         System.setProperty("webdriver.chrome.driver", "E://chromedriver.exe");
 		
+		S.O.p("setting the certificates");
 		DesiredCapabilities cd=DesiredCapabilities.chrome();
 		cd.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 		cd.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
@@ -44,7 +45,7 @@ public class HttpResponseCode  {
 		
 		System.setProperty("webdriver.chrome.driver", "E://chromedriver.exe");
 		WebDriver driver=new ChromeDriver(c);
-		
+		S.o.p("log in to url");
 		driver.get("https://developer.here.com/documentation");
 		
 		List <WebElement> dropDownlinks=driver.findElements(By.xpath("//li[@class='dp-drop-down-variants']/div/ul/li/a"));
