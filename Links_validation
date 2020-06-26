@@ -36,6 +36,10 @@ public class HttpResponseCode  {
         System.setProperty("webdriver.chrome.driver", "E://chromedriver.exe");
 		
 		S.O.p("setting the certificates");
+		S.O.p("setting the certificates");
+		S.O.p("setting the certificates");
+		
+		
 		DesiredCapabilities cd=DesiredCapabilities.chrome();
 		cd.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 		cd.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
