@@ -1,0 +1,96 @@
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+
+import io.restassured.RestAssured;
+
+
+
+public class HttpResponseCode  {
+  
+	
+	  WebDriver driver;
+	  int statusCode;
+	
+	
+	  public int httpResponseCodeViaGet(String url) {
+          return RestAssured.get(url).statusCode();
+  }
+
+  public int httpResponseCodeViaPost(String url) {
+      return RestAssured.post(url).statusCode();
+  }
+	
+	public void checkBrokenLinks() {
+		
+        System.setProperty("webdriver.chrome.driver", "E://chromedriver.exe");
+		
+		DesiredCapabilities cd=DesiredCapabilities.chrome();
+		cd.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+		cd.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+		
+		ChromeOptions c=new ChromeOptions();
+		c.merge(cd);
+		
+		System.setProperty("webdriver.chrome.driver", "E://chromedriver.exe");
+		WebDriver driver=new ChromeDriver(c);
+		
+		driver.get("https://developer.here.com/documentation");
+		
+		List <WebElement> dropDownlinks=driver.findElements(By.xpath("//li[@class='dp-drop-down-variants']/div/ul/li/a"));
+        String href;
+
+        for(WebElement link : dropDownlinks) {
+            href = link.getAttribute("href");
+            statusCode = new HttpResponseCode().httpResponseCodeViaGet(href);
+           
+            if(200 != statusCode) {
+            
+                System.out.println(href + " Response is " + statusCode);
+            }
+	       
+    }
+        
+      	List <WebElement> links=driver.findElements(By.xpath("//div[@class='cta-links']/ul/li/a"));
+    	
+      
+
+        for(WebElement link : links) {
+            href = link.getAttribute("href");
+            statusCode = new HttpResponseCode().httpResponseCodeViaGet(href);
+
+            if(200 != statusCode) {
+                 System.out.println(href + " Response is " + statusCode);
+            }
+	}
+		
+}
+	
+	
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+		
+		new HttpResponseCode().checkBrokenLinks();
+		
+	}
+
+	         
+	         
+	     	
+	  
+
+}
+
+
+
