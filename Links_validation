@@ -85,7 +85,9 @@ public class HttpResponseCode  {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
-		
+			S.O.p("hi");
+			S.O.p("hi");
+				S.O.p("hi");
 		new HttpResponseCode().checkBrokenLinks();
 		
 	}
